@@ -47,6 +47,7 @@ dom101 loosely follows the conventions of [101].
 | `$(el).text()`              | [text](#text)(el)                               |
 | `$(el).text('...')`         | [text](#text)(el, '...')                        |
 | `$(el).on('click', fn)`     | [on](#on)(el, 'click', fn)                      |
+| `$(el).off('click', fn)`    | [off](#off)(el, 'click', fn)                    |
 | `$(fn)`                     | [ready](#ready)(fn)                             |
 | `$(document).ready(fn)`     | [ready](#ready)(fn)                             |
 | `$(document).height()`      | [documentHeight](#documentheight)()             |
@@ -256,6 +257,17 @@ Compare with [$.fn.is](http://api.jquery.com/is/).
 var matches = require('dom101/matches');
 
 matches(button, ':focus');
+```
+
+### off
+> `off(el, event, fn)`
+
+Removes an event handler.
+
+```js
+var off = require('dom101/off');
+
+off(el, 'click', handler);
 ```
 
 ### on

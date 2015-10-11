@@ -16,6 +16,7 @@ module.exports = {
   map: require('./map'),
   matches: require('./matches'),
   on: require('./on'),
+  off: require('./off'),
   prepend: require('./prepend'),
   querySelector: require('./query-selector'),
   querySelectorAll: require('./query-selector-all'),

@@ -216,9 +216,10 @@ describe('prepend', function () {
   });
 });
 
-describe('on, trigger', function () {
+describe('on, trigger, off', function () {
   var on = mdom.on;
   var trigger = mdom.trigger;
+  var off = mdom.off;
 
   it('works with input onchange', function (next) {
     var input = document.createElement('input');
@@ -236,6 +237,16 @@ describe('on, trigger', function () {
     });
 
     trigger(div, 'click');
+  });
+
+  it('off removes event handler', function (next) {
+    var handler = function () {
+      next('handler called');
+    };
+    on(div, 'click', handler);
+    off(div, 'click', handler);
+    trigger(div, 'click');
+    next();
   });
 });
 
