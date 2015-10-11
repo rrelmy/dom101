@@ -1,5 +1,5 @@
 /**
- * querySelectorAll : querySelectorAll(query)
+ * querySelectorAll : querySelectorAll(query, [scope])
  * Convenience function to access `document.querySelectorAll`.
  *
  *     var each = require('dom101/each');
@@ -7,11 +7,13 @@
  *
  *     each(qa('.button'), function (el) {
  *       addClass('el', 'selected');
+ *
+ *       var child = qa('.child', el);
  *     });
  */
 
-function querySelectorAll (query) {
-  return document.querySelectorAll(query);
+function querySelectorAll (query, scope) {
+  return (scope || document).querySelectorAll(query);
 }
 
 module.exports = querySelectorAll;

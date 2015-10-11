@@ -37,24 +37,25 @@ dom101 loosely follows the conventions of [101].
 
 ## Reference
 
-| jQuery                      | dom101                                 |
-| ------                      | ------                                 |
-| `$(el).addClass('...')`     | [addClass](#addclass)(el, '...')       |
-| `$(el).hasClass('...')`     | [hasClass](#hasclass)(el, '...')       |
-| `$(el).removeClass('...')`  | [removeClass](#removeclass)(el, '...') |
-| `$(el).toggleClass('...')`  | [toggleClass](#toggleclass)(el, '...') |
-| `$(el).remove()`            | [remove](#remove)(el)                  |
-| `$(el).text()`              | [text](#text)(el)                      |
-| `$(el).text('...')`         | [text](#text)(el, '...')               |
-| `$(el).on('click', fn)`     | [on](#on)(el, 'click', fn)             |
-| `$(fn)`                     | [ready](#ready)(fn)                    |
-| `$(document).ready(fn)`     | [ready](#ready)(fn)                    |
-| `$(document).height()`      | [documentHeight](#documentheight)()    |
-| `$(document).width()`       | [documentWidth](#documentwith)()       |
-| `$(el).prepend(child)`      | [prepend](#prepend)(el, child)         |
-| `$(el).trigger('click')`    | [trigger](#trigger)(el, 'click')       |
-| `$(el).closest('selector')` | [closest](#closest)(el, 'selector')    |
-| `$(el).is('selector')`      | [matches](#matches)(el, 'selector')    |
+| jQuery                      | dom101                                          |
+| ------                      | ------                                          |
+| `$(el).addClass('...')`     | [addClass](#addclass)(el, '...')                |
+| `$(el).hasClass('...')`     | [hasClass](#hasclass)(el, '...')                |
+| `$(el).removeClass('...')`  | [removeClass](#removeclass)(el, '...')          |
+| `$(el).toggleClass('...')`  | [toggleClass](#toggleclass)(el, '...')          |
+| `$(el).remove()`            | [remove](#remove)(el)                           |
+| `$(el).text()`              | [text](#text)(el)                               |
+| `$(el).text('...')`         | [text](#text)(el, '...')                        |
+| `$(el).on('click', fn)`     | [on](#on)(el, 'click', fn)                      |
+| `$(fn)`                     | [ready](#ready)(fn)                             |
+| `$(document).ready(fn)`     | [ready](#ready)(fn)                             |
+| `$(document).height()`      | [documentHeight](#documentheight)()             |
+| `$(document).width()`       | [documentWidth](#documentwith)()                |
+| `$(el).prepend(child)`      | [prepend](#prepend)(el, child)                  |
+| `$(el).trigger('click')`    | [trigger](#trigger)(el, 'click')                |
+| `$(el).closest('selector')` | [closest](#closest)(el, 'selector')             |
+| `$(el).is('selector')`      | [matches](#matches)(el, 'selector')             |
+| `$(el).find('selector')`    | [querySelector](#querySelector)('selector', el) |
 
 ### Non-DOM utilities
 
@@ -70,10 +71,12 @@ dom101 loosely follows the conventions of [101].
 
 Some aliases for DOM functions are also added for convenience.
 
-| DOM                              | dom101                                     |
-| ---                              | ------                                     |
-| `document.querySelector(...)`    | [querySelector](#queryselector)(...)       |
-| `document.querySelectorAll(...)` | [querySelectorAll](#queryselectorall)(...) |
+| DOM                              | dom101                                              |
+| ---                              | ------                                              |
+| `document.querySelector(...)`    | [querySelector](#queryselector)(...)                |
+| `element.querySelector(...)`     | [querySelector](#queryselector, element)(...)       |
+| `document.querySelectorAll(...)` | [querySelectorAll](#queryselectorall)(...)          |
+| `element.querySelectorAll(...)`  | [querySelectorAll](#queryselectorall)(..., element) |
 
 ### Not implemented
 
@@ -280,7 +283,7 @@ prepend(el, child);
 ```
 
 ### querySelectorAll
-> `querySelectorAll(query)`
+> `querySelectorAll(query, [scope])`
 
 Convenience function to access `document.querySelectorAll`.
 
@@ -290,11 +293,13 @@ var qa = require('dom101/query-selector-all');
 
 each(qa('.button'), function (el) {
   addClass('el', 'selected');
+
+  var child = qa('.child', el);
 });
 ```
 
 ### querySelector
-> `querySelector(query)`
+> `querySelector(query, [scope])`
 
 Convenience function to access `document.querySelector`.
 

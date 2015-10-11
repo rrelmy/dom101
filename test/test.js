@@ -255,6 +255,20 @@ describe('querySelector', function () {
   it('works', function () {
     expect(mdom.querySelector('.hello')).to.eql(div);
   });
+
+  it('works with scope', function () {
+    // add div inside div
+    var div2 = document.createElement('div');
+    div2.className = 'world';
+    div.appendChild(div2);
+
+    // add div before div
+    var div3 = document.createElement('div');
+    div3.className = 'world';
+    document.body.insertBefore(div3, div);
+
+    expect(mdom.querySelector('.world', div)).to.eql(div2);
+  });
 });
 
 describe('each', function () {
